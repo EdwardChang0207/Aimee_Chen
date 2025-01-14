@@ -25,7 +25,7 @@
 
 ## 課程內容
 
-課程將涵蓋Python的基礎語法與相關應用，並透過簡單的演算法及資料結構概念實現程式優化：  
+課程將涵蓋Python的基礎語法與相關應用，並透過外部函式庫達成excel之自動化功能：  
 1. **基本輸入輸出與運算**：Python 的輸入輸出語法、資料型別、數學運算與格式化輸出。  
 2. **條件判斷與迴圈**：if-else 邏輯結構，for/while 迴圈應用與嵌套處理。  
 3. **基礎資料結構與處理**：列表（List）、字典（Dictionary）、集合（Set）與字串操作。  
@@ -45,10 +45,10 @@
 ### 必備工具  
 1. **編輯器**：建議安裝 [Visual Studio Code](https://code.visualstudio.com/)。  
 2. **Python 環境**：請安裝 [Python 3.10+](https://www.python.org/downloads/) 並確保已設定好環境變數。  
-[點我開啟安裝教學](https://github.com/EdwardChang0207/Python-2025-Mar/blob/main/上課講義/基礎程式語法/Lesson0/Lesson%200%20環境設置、課程介紹%20a37fc2868de24f0e8b71ecc97bdf4050.md)
-3. **加入Google Meet教室**：請點擊右側連結加入 [點我加入]() 並確保音訊設備（耳機、麥克風）可正常使用
+[點我開啟安裝教學](https://github.com/EdwardChang0207/Aimee_Chen/blob/main/上課講義/基礎程式語法/Lesson0/Lesson%200%20環境設置、課程介紹%20a37fc2868de24f0e8b71ecc97bdf4050.md)
+3. **加入Google Meet教室**：請點擊右側連結加入 [點我加入](https://meet.google.com/qbx-wrup-qyf) 並確保音訊設備（耳機、麥克風）可正常使用
 4. **ZeroJudge解題平台**：請點擊右側連結 [ZeroJudge](https://zerojudge.tw) 並使用Google帳號登入  
-登入後請點擊右上使用者->加入課程，課程代碼：lGTYUq  
+登入後請點擊右上使用者->加入課程，課程代碼：JXLOUH  
 [點我觀看使用教學](https://youtu.be/ID5brYr5fvQ)
 5. **課後提問**：  
 繳交方式：將檔案(不要直接複製程式碼)與問題使用電子郵件傳送至：funnycoding@letsfunnycoding.com  
@@ -56,4 +56,4 @@
 ---
 
 ## 課程日程
-待定中、確定後另行通知# Aimee_Chen
+[課程進度表](https://github.com/EdwardChang0207/Aimee_Chen/tree/main/Aimee課程進度表)
