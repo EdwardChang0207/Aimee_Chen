@@ -1,0 +1,1 @@
+print('hi '+input('pls enter ur name'))
