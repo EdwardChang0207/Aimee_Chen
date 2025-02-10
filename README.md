@@ -19,7 +19,7 @@
 - **授課對象**：程式設計有興趣並想要學習Python之相關應用的學員  
 - **課程時段**：每週三下午18:00-20:00
 - **課堂數**：共 23 堂  
-- **課堂錄影**：課後錄影將上傳至 [YouTube 播放清單]()  
+- **課堂錄影**：課後錄影將上傳至 [YouTube 播放清單](https://www.youtube.com/playlist?list=PLdvY4QzZf7AkfZNeWm151s1QR6STYl4v_)  
 
 ---
 
