@@ -40,10 +40,15 @@
 # for i in s:
 #     print(i) #end = '\n'
 
-#continue(skip), break(stop)
-for i in range(10): #0~9
-    if i % 3 == 0: #是三的倍數->跳過
-        continue
-    if i == 7:
-        break
-    print(i)
+# #continue(skip), break(stop)
+# for i in range(10): #0~9
+#     if i % 3 == 0: #是三的倍數->跳過
+#         continue
+#     if i == 7:
+#         break
+#     print(i)
+
+for i in range(8):
+    for j in range(8):
+        print(i,j)
+
