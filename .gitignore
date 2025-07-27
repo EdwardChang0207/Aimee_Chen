@@ -14,6 +14,11 @@
 *.xlsm
 *.xlsb
 
+# Chrome 瀏覽器檔案
+chrome-mac-arm64/
+**/chrome-mac-arm64/
+**/Google Chrome for Testing.app/
+
 # macOS 系統檔案
 .DS_Store
 .DS_Store?
