@@ -1,0 +1,69 @@
+# 壓縮檔案
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.tar.bz2
+*.gz
+*.bz2
+
+# Excel 檔案
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+
+# macOS 系統檔案
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Python 相關
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虛擬環境
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE 相關
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日誌檔案
+*.log
+logs/
+
+# 暫存檔案
+*.tmp
+*.temp 

@@ -1,78 +1,113 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import Download_BOM
 
+#loading BOM list for searching
 Upload_ME_List = Download_BOM.Run_ME_BOM("上課檔案/Day16/BOM_download.xlsx")
 print(Upload_ME_List)
 
+#selenium init
 driver = webdriver.Chrome()
-
+#link to web
 driver.get("https://material.ui.com/dashboard/approve")
 driver.implicitly_wait(1)
-title = driver.title
+
+#email, pw input
 email_input = driver.find_element(By.NAME,'user')
 email_input.clear()
 email_input.send_keys("aimee.chen@ui.com")
 pwd_input = driver.find_element(By.NAME,'password')
 pwd_input.clear()
 pwd_input.send_keys("Kikiintw2013")
+#click login btn
 login_btn = driver.find_element(By.CLASS_NAME,"button__VCR3r9bC")
 login_btn.click()
-time.sleep(3) #
-login2_btn = driver.find_element(By.CLASS_NAME,"css-vwwxf9")
-login2_btn.click()
-time.sleep(3)
-email_btn = driver.find_element(By.CLASS_NAME,"css-1kupspz")
+#click other methods btn for email va
+other_methods_btn = WebDriverWait(driver, 20).until(
+EC.element_to_be_clickable((By.CLASS_NAME, "css-vwwxf9")))
+other_methods_btn.click()
+
+#select email as va method
+email_btn = WebDriverWait(driver, 20).until(
+EC.element_to_be_clickable((By.CLASS_NAME, "css-1kupspz")))
 email_btn.click()
-time.sleep(30)
-trust_btn = driver.find_element(By.CLASS_NAME,"button__VCR3r9bC")
+
+#wait for code & click trush btn
+trust_btn = WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable((By.CLASS_NAME, "button__VCR3r9bC")))
 trust_btn.click()
-time.sleep(5)
-parts_btn = driver.find_elements(By.CLASS_NAME,"component__rHEvxowz")[1]
-parts_btn.click()
-time.sleep(5)
-ME_BOM_PN = driver.find_element(By.CLASS_NAME,"toolbarInput__gJcHJw7V")
-ME_BOM_PN.send_keys(Upload_ME_List[0][:-3])
-time.sleep(2)
-ME_PN = driver.find_element(By.CSS_SELECTOR,f"[title='{Upload_ME_List[0][:-3]}']")
-ME_PN = ME_PN.find_element(By.TAG_NAME, 'a')
-item_link = ME_PN.get_attribute('href')
-driver.get(item_link+'/details')
-time.sleep(5)
-drop_down_arrow = driver.find_element(By.CLASS_NAME, 'dropdownArrow-light')
-drop_down_arrow.click()
-time.sleep(3)
-BOM_no = driver.find_element(By.CLASS_NAME, 'options__Tn64umPB')
-time.sleep(1)
-BOM_no = BOM_no.find_elements(By.TAG_NAME, 'li')
-target_BOM_no = Upload_ME_List[0].split('-')[-1]
-target_BOM_no = int(target_BOM_no)
-print(target_BOM_no)
-for i in BOM_no:
-    print(f'cur:{i.text}')
-    if i.text.split()[0] == str(target_BOM_no):
-        print(f'found cur:{i.text}')
-        i.click()
-        break
-time.sleep(5)
 
-# Rev_list_0 = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div[1]/div")
-# Rev_list_0 = Rev_list_0.find_elements(By.TAG_NAME,"div")[1]
-# Rev_list_0 = Rev_list_0.find_element(By.TAG_NAME,"ul")
-# print(Rev_list_0)
+#loop through Bom list
+for targer_BOM_no in Upload_ME_List:
 
-# Rev_list_0 = Rev_list_0.find_element(By.TAG_NAME,"div")
-# Rev_list_1 = driver.find_element(By.CLASS_NAME,"inputContainer__Tn64umPB")
-# time.sleep(15)
-# Rev_list_2 = Rev_list_1.find_element(By.CLASS_NAME,"options__Tn64umPB")
-# Rev_list_li = Rev_list_2.find_elements(By.TAG_NAME, "li")
-# # for i in Rev_list_li:
-#     print(i.find_element(By.TAG_NAME, "div").text)
+    #enter item searching page
+    parts_btn = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "component__rHEvxowz")))
+    parts_btn = driver.find_elements(By.CLASS_NAME,"component__rHEvxowz")[1]
+    parts_btn.click()
 
+    #enter Bom no to searching box
+    ME_BOM_PN = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "toolbarInput__gJcHJw7V")))
+    ME_BOM_PN.send_keys(targer_BOM_no[:-3])
 
-# driver.quit()
+    #link to target item page
+    ME_PN = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, f"[title='{targer_BOM_no[:-3]}']")))
+    ME_PN = ME_PN.find_element(By.TAG_NAME, 'a')
+    item_link = ME_PN.get_attribute('href')
+    driver.get(item_link+'/details')
+    
+    #click on bill btn
+    Bill_btn = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, 'tab__nBdbJVQs')))
+    Bill_btn = driver.find_elements(By.CLASS_NAME, 'tab__nBdbJVQs')[1]
+    Bill_btn.click()
+
+    def downlad_process():
+        #click on export btn
+        export_btn = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[2]/div/div[1]/div/div[3]/div/div[1]/div[2]/div[1]/button')))
+        export_btn.click()
+
+        #target on modal
+        modal = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.CLASS_NAME, 'modal__jY8jkXxJ')))
+        arrow_btn = modal.find_element(By.CLASS_NAME, 'dropdownArrow__xsesnvVh')
+        arrow_btn.click()
+
+        #select on default option
+        default_option = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.ID, 'dropdownOptions_default')))
+        default_option.click()
+
+        #click export btn
+        export = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.CLASS_NAME, 'primary__VCR3r9bC')))
+        export.click()
+        time.sleep(2)
+
+    downlad_process()
+
+    #click on BOM version select arrow btn
+    drop_down_arrow = driver.find_element(By.CLASS_NAME, 'dropdownArrow-light')
+    drop_down_arrow.click()
+    BOM_no = WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.CLASS_NAME, 'options__Tn64umPB')))
+    time.sleep(1)
+    BOM_no = BOM_no.find_elements(By.TAG_NAME, 'li')
+
+    #va if effective is latest version
+    for i in range(len(BOM_no)):
+        print(f'cur:{BOM_no[i].text}')
+        if 'Effective' in BOM_no[i].text:
+            print(f'found cur:{BOM_no[i].text}')
+            if i == 0: break
+            BOM_no[i].click()
+            downlad_process()
+            break
+
+driver.quit()
