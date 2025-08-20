@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import Download_BOM
+import move_file
+import combine_BOM
 
 #loading BOM list for searching
 Upload_ME_List = Download_BOM.Run_ME_BOM("上課檔案/Day16/BOM_download.xlsx")
@@ -90,8 +92,6 @@ for targer_BOM_no in Upload_ME_List:
         export.click()
         time.sleep(2)
 
-    downlad_process()
-
     #click on BOM version select arrow btn
     drop_down_arrow = driver.find_element(By.CLASS_NAME, 'dropdownArrow-light')
     drop_down_arrow.click()
@@ -99,15 +99,21 @@ for targer_BOM_no in Upload_ME_List:
         EC.element_to_be_clickable((By.CLASS_NAME, 'options__Tn64umPB')))
     time.sleep(1)
     BOM_no = BOM_no.find_elements(By.TAG_NAME, 'li')
-
+    download = False
     #va if effective is latest version
     for i in range(len(BOM_no)):
         print(f'cur:{BOM_no[i].text}')
         if 'Effective' in BOM_no[i].text:
             print(f'found cur:{BOM_no[i].text}')
             if i == 0: break
+            download = True
             BOM_no[i].click()
             downlad_process()
             break
+    if not download:
+        downlad_process()
 
 driver.quit()
+
+move_file.move_file('上課檔案/Day16/source')
+combine_BOM.combine_BOM('上課檔案/Day16/BOM_file')
